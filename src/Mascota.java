@@ -22,7 +22,8 @@ public class Mascota {
 
     public void setAlias(String alias) {
         //Obligatorio && length >= 3.
-        assert alias != null;
+        //assert checkAlias(alias);
+        checkAlias(alias);
         this.alias = alias;
     }
 
@@ -32,22 +33,8 @@ public class Mascota {
 
     public void setColorPelo(String colorPelo) {
         //Obligatorio (AZUL, BLANCO, NEGRO, ROJO).
-
-        if (colorPelo == null)
-            System.err.println("Error el color de pelo no puede ser nulo.");
-        else if (colorPelo.isEmpty())
-            System.err.println("Error el color de pelo no puede una cadena vacia.");
-        else if (colorPelo.isBlank())
-            System.err.println("Error el color de pelo no puede una cadena de espacios en blanco.");
-        else if (
-                !(colorPelo.equalsIgnoreCase("AZUL") ||
-                        colorPelo.equalsIgnoreCase("BLANCO") ||
-                        colorPelo.equalsIgnoreCase("NEGRO") ||
-                        colorPelo.equalsIgnoreCase("ROJO"))
-        )
-            System.err.println("Color de pelo invalido, el color debe ser AZUL, BLANCO, NEGRO O ROJO.");
-
-        assert colorPelo != null;
+        //assert checkColorPelo(colorPelo);
+        checkColorPelo(colorPelo);
         this.colorPelo = colorPelo.toUpperCase();
     }
 
@@ -62,7 +49,7 @@ public class Mascota {
     }
 
     public String toString() {
-        return String.format("Alias -> %s,\n Color de pelo -> %s, peso %.2f",
+        return String.format("Alias -> %s,\nColor de pelo -> %s,\nPeso %.2f kg.",
                 getAlias(), getColorPelo(), getPeso());
     }
 
@@ -96,6 +83,27 @@ public class Mascota {
         } else if (alias.length() < 3) {
             System.err.printf("Error, el alias debe tener una longitud minima de 3 caracteres.\n" +
                     "Longitud actual %d", alias.length());
+            return false;
+        }
+        return true;
+    }
+
+    private boolean checkColorPelo(String colorPelo) {
+        if (colorPelo == null) {
+            System.err.println("Error el color de pelo no puede ser nulo.");
+            return false;
+        } else if (colorPelo.isEmpty()) {
+            System.err.println("Error el color de pelo no puede una cadena vacia.");
+            return false;
+        } else if (colorPelo.isBlank()) {
+            System.err.println("Error el color de pelo no puede una cadena de espacios en blanco.");
+            return false;
+        } else if (!(colorPelo.equalsIgnoreCase("AZUL") ||
+                colorPelo.equalsIgnoreCase("BLANCO") ||
+                colorPelo.equalsIgnoreCase("NEGRO") ||
+                colorPelo.equalsIgnoreCase("ROJO"))
+        ) {
+            System.err.println("Color de pelo invalido, el color debe ser AZUL, BLANCO, NEGRO O ROJO.");
             return false;
         }
         return true;
