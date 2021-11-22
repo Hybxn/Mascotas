@@ -22,8 +22,8 @@ public class Mascota {
 
     public void setAlias(String alias) {
         //Obligatorio && length >= 3.
-        //assert checkAlias(alias);
-        checkAlias(alias);
+        assert checkAlias(alias);
+        //checkAlias(alias);
         this.alias = alias;
     }
 
@@ -33,8 +33,8 @@ public class Mascota {
 
     public void setColorPelo(String colorPelo) {
         //Obligatorio (AZUL, BLANCO, NEGRO, ROJO).
-        //assert checkColorPelo(colorPelo);
-        checkColorPelo(colorPelo);
+        assert checkColorPelo(colorPelo);
+        //checkColorPelo(colorPelo);
         this.colorPelo = colorPelo.toUpperCase();
     }
 
